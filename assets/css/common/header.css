@@ -91,7 +91,7 @@ body:not(.dark) #sun {
 .logo-switches {
     flex-wrap: inherit;
 }
-.nav a:hover {
+.logo a:hover {
     transition: 0.15s;
     color: grey;
 }
