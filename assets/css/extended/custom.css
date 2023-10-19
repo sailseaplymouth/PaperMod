@@ -1,0 +1,17 @@
+.logo a:hover {
+    transition: 0.15s;
+    color: grey;
+}
+#moon:hover {
+    transition: 0.15s;
+    color: deepskyblue;
+}
+
+#sun:hover {
+    transition: 0.15s;
+    color: gold;
+}
+#menu a:hover {
+    transition: 0.15s;
+    color: grey;
+}
