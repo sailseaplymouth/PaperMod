@@ -45,21 +45,6 @@
             {{- $label_text := (site.Params.label.text | default site.Title) }}
             {{- if site.Title }}
             <a href="{{ "" | absLangURL }}" accesskey="h" title="{{ $label_text }} (Alt + H)">
-                {{- if site.Params.label.icon }}
-                {{- $img := resources.Get site.Params.label.icon }}
-                {{- if $img }}
-                    {{- $processableFormats := (slice "jpg" "jpeg" "png" "tif" "bmp" "gif") -}}
-                    {{- if hugo.IsExtended -}}
-                        {{- $processableFormats = $processableFormats | append "webp" -}}
-                    {{- end -}}
-                    {{- $prod := (hugo.IsProduction | or (eq site.Params.env "production")) }}
-                    {{- if and (in $processableFormats $img.MediaType.SubType) (eq $prod true)}}
-                        {{- if site.Params.label.iconHeight }}
-                            {{- $img = $img.Resize (printf "x%d" site.Params.label.iconHeight) }}
-                        {{ else }}
-                            {{- $img = $img.Resize "x30" }}
-                        {{- end }}
-                    {{- end }}
                     <div class="palette">
                         <svg xmlns="http://www.w3.org/2000/svg" width="{{- site.Params.label.iconHeight | default "30" -}}" height="{{- site.Params.label.iconHeight | default "30" -}}" viewBox="35 35 35 35" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -67,19 +52,6 @@
                             <line x1="3" y1="18" x2="21" y2="18"></line>
                         </svg>
                     </div>
-                {{- else }}
-                <div class="palette">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="{{- site.Params.label.iconHeight | default "30" -}}" height="{{- site.Params.label.iconHeight | default "30" -}}" viewBox="35 35 35 35" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </svg>
-                </div>
-                {{- end -}}
-                {{- else if hasPrefix site.Params.label.iconSVG "<svg" }}
-                    {{ site.Params.label.iconSVG | safeHTML }}
-                {{- end -}}
-                {{- $label_text -}}
             </a>
             {{- end }}
             <div class="logo-switches">
