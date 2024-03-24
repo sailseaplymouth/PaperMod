@@ -16,3 +16,14 @@
     transition: 0.15s;
     color: grey;
 }
+a:hover {
+    color: var(--carolina_blue);
+}
+
+a.anchor:hover {
+    color: var(--carolina_blue) !important;
+}
+
+svg:hover {
+    color: var(--carolina_blue);
+}
