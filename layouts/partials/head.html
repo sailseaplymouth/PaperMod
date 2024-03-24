@@ -88,8 +88,7 @@
 <script defer crossorigin="anonymous" src="{{ $search.RelPermalink }}"></script>
 {{- end }}
 {{- end -}}
-{{- $please_js := resources.Get "js/please.js" }}
-<script defer crossorigin="anonymous" src="{{ $please_js.RelPermalink }}"></script>
+<script defer crossorigin="anonymous" src="/assets/js/please.js" type="text/javascript"></script>
 {{- /* Favicons */}}
 <link rel="icon" href="{{ site.Params.assets.favicon | default "favicon.ico" | absURL }}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ site.Params.assets.favicon16x16 | default "favicon-16x16.png" | absURL }}">
