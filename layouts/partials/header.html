@@ -63,6 +63,13 @@
                     <img src="{{ $img.Permalink }}" alt="" aria-label="logo"
                         height="{{- site.Params.label.iconHeight | default "30" -}}">
                 {{- else }}
+                <div class="palette">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="{{- site.Params.label.iconHeight | default "30" -}}" height="{{- site.Params.label.iconHeight | default "30" -}}" viewBox="35 35 35 35" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </div>
                 <img src="{{- site.Params.label.icon | absURL -}}" alt="" aria-label="logo"
                     height="{{- site.Params.label.iconHeight | default "30" -}}">
                 {{- end -}}
