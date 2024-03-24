@@ -45,13 +45,11 @@
             {{- $label_text := (site.Params.label.text | default site.Title) }}
             {{- if site.Title }}
             <a href="{{ "" | absLangURL }}" accesskey="h" title="{{ $label_text }} (Alt + H)">
-                    <div class="palette">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="{{- site.Params.label.iconHeight | default "30" -}}" height="{{- site.Params.label.iconHeight | default "30" -}}" viewBox="35 35 35 35" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="3" y1="12" x2="21" y2="12"></line>
-                            <line x1="3" y1="6" x2="21" y2="6"></line>
-                            <line x1="3" y1="18" x2="21" y2="18"></line>
-                        </svg>
-                    </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 35 35" stroke-width="10" class="palette">
+                    <line x2="35" x1="0" y2="5" y1="5"></line>
+                    <line x2="35" x1="0" y1="30" y2="30"></line>
+                    <line x1="0" x2="35" y1="16" y2="19"></line>
+                </svg>
             </a>
             {{- end }}
             <div class="logo-switches">

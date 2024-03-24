@@ -10,9 +10,9 @@ const colors = Please.make_scheme(
     }
   );
   
-  document.querySelector(".palette div:nth-child(1)")
-    .style.backgroundColor = colors[0];
-  document.querySelector(".palette div:nth-child(2)")
-    .style.backgroundColor = colors[1];
-  document.querySelector(".palette div:nth-child(3)")
-    .style.backgroundColor = colors[2];
+  document.querySelector(".palette line:nth-child(1)")
+    .style.stroke = colors[0];
+  document.querySelector(".palette line:nth-child(2)")
+    .style.stroke = colors[1];
+  document.querySelector(".palette line:nth-child(3)")
+    .style.stroke = colors[2];
