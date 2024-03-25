@@ -38,37 +38,38 @@
 
 </script>
 {{- end }}
-<script>
-    const colors = Please.make_scheme(
-    {
-      h: 99,
-      s: .5,
-      v: .85
-    },
-    {
-      scheme_type: 'triadic',
-      format: 'hex'
-    }
-  );
-  
-  document.querySelector(".palette line:nth-child(1)")
-    .style.stroke = colors[0];
-  document.querySelector(".palette line:nth-child(2)")
-    .style.stroke = colors[1];
-  document.querySelector(".palette line:nth-child(3)")
-    .style.stroke = colors[2];
-</script>
+
 <header class="header">
     <nav class="nav">
         <div class="logo">
             {{- $label_text := (site.Params.label.text | default site.Title) }}
             {{- if site.Title }}
             <a href="{{ "" | absLangURL }}" accesskey="h" title="{{ $label_text }} (Alt + H)">
-                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 35 35" stroke-width="10" class="palette">
-                    <line x2="35" x1="0" y2="5" y1="5"></line>
-                    <line x2="35" x1="0" y1="30" y2="30"></line>
-                    <line x1="0" x2="35" y1="16" y2="19"></line>
-                </svg>
+                {{- if site.Params.label.icon }}
+                {{- $img := resources.Get site.Params.label.icon }}
+                {{- if $img }}
+                    {{- $processableFormats := (slice "jpg" "jpeg" "png" "tif" "bmp" "gif") -}}
+                    {{- if hugo.IsExtended -}}
+                        {{- $processableFormats = $processableFormats | append "webp" -}}
+                    {{- end -}}
+                    {{- $prod := (hugo.IsProduction | or (eq site.Params.env "production")) }}
+                    {{- if and (in $processableFormats $img.MediaType.SubType) (eq $prod true)}}
+                        {{- if site.Params.label.iconHeight }}
+                            {{- $img = $img.Resize (printf "x%d" site.Params.label.iconHeight) }}
+                        {{ else }}
+                            {{- $img = $img.Resize "x30" }}
+                        {{- end }}
+                    {{- end }}
+                    <img src="{{ $img.Permalink }}" alt="" aria-label="logo"
+                        height="{{- site.Params.label.iconHeight | default "30" -}}">
+                {{- else }}
+                <img src="{{- site.Params.label.icon | absURL -}}" alt="" aria-label="logo"
+                    height="{{- site.Params.label.iconHeight | default "30" -}}">
+                {{- end -}}
+                {{- else if hasPrefix site.Params.label.iconSVG "<svg" }}
+                    {{ site.Params.label.iconSVG | safeHTML }}
+                {{- end -}}
+                {{- $label_text -}}
             </a>
             {{- end }}
             <div class="logo-switches">
@@ -118,19 +119,8 @@
                 {{- end }}
             </div>
         </div>
-
-        <!-- Source: https://github.com/adityatelange/hugo-PaperMod/discussions/943
-        Also note <ul class="menu hidden"> below -->
-        <button id="menu-trigger" aria-haspopup="menu" aria-label="Menu Button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
-                <line x1="3" y1="12" x2="21" y2="12"></line>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <line x1="3" y1="18" x2="21" y2="18"></line>
-            </svg>
-        </button>
-    
         {{- $currentPage := . }}
-        <ul class="menu hidden">
+        <ul id="menu">
             {{- range site.Menus.main }}
             {{- $menu_item_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL) ) | absLangURL }}
             {{- $page_url:= $currentPage.Permalink | absLangURL }}
