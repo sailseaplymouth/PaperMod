@@ -64,12 +64,3 @@ div.highlight:hover .copy-code,
 pre:hover .copy-code {
     display: block;
 }
-
-/* Change color on hover */
-a:hover {
-    color: var(--carolina_blue);
-}
-
-a.anchor:hover {
-    color: var(--carolina_blue) !important;
-}
