@@ -3,10 +3,10 @@
 {{ if not $featured }}{{ $featured = $images.GetMatch "{*cover*,*thumbnail*}" }}{{ end }}
 {{ if not $featured }}{{ $featured = resources.Get "/opengraph/base-image.png" }}{{ end }}
 {{ with $featured }}
-    {{ $size := 80 }}
+    {{ $size := 40 }}
     {{ $title := $.LinkTitle }}
     {{ if gt (len $title) 20 }}
-    {{ $size = 70 }}
+    {{ $size = 20 }}
     {{ end }}
 
     {{ $text := $title }}
@@ -14,7 +14,7 @@
                     "color" "#6c6c6c"
                     "size" $size
                     "lineSpacing" 10
-                    "x" 65 "y" 80
+                    "x" 24 "y" 24
                     "font" (resources.Get "/opengraph/Martel-Regular.ttf")
                 }}
 
