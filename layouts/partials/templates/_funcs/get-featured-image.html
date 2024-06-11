@@ -3,10 +3,10 @@
 {{ if not $featured }}{{ $featured = $images.GetMatch "{*cover*,*thumbnail*}" }}{{ end }}
 {{ if not $featured }}{{ $featured = resources.Get "/opengraph/base-image.png" }}{{ end }}
 {{ with $featured }}
-    {{ $size := 40 }}
+    {{ $size := 60 }}
     {{ $title := $.LinkTitle }}
     {{ if gt (len $title) 20 }}
-    {{ $size = 20 }}
+    {{ $size = 40 }}
     {{ end }}
 
     {{ $text := $title }}
