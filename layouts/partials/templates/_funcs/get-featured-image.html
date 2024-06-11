@@ -1,7 +1,7 @@
 {{ $images := $.Resources.ByType "image" }}
 {{ $featured := $images.GetMatch "*feature*" }}
 {{ if not $featured }}{{ $featured = $images.GetMatch "{*cover*,*thumbnail*}" }}{{ end }}
-{{ if not $featured }}{{ $featured = resources.Get "/base-image.png" }}{{ end }}
+{{ if not $featured }}{{ $featured = resources.Get "/opengraph/base-image.png" }}{{ end }}
 {{ with $featured }}
     {{ $size := 80 }}
     {{ $title := $.LinkTitle }}
@@ -15,7 +15,7 @@
                     "size" $size
                     "lineSpacing" 10
                     "x" 65 "y" 80
-                    "font" (resources.Get "/fonts/Martel-Regular.ttf")
+                    "font" (resources.Get "/opengraph/Martel-Regular.ttf")
                 }}
 
     {{ $featured = $featured | images.Filter (images.Text $text $textOptions) }}
